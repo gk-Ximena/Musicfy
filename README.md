@@ -73,4 +73,76 @@ Built with **React**, **Tauri (Rust)**, and a **WebSocket bridge** for fast, sea
 
 ---
 
+## 📥 How to Download & Install Musicfy
+
+You can download both the **desktop app** and the **browser extension** from my Google Drive folder:
+
+👉 **Download Musicfy (App + Extension)**  
+[Click here](https://drive.google.com/drive/folders/1TjfUBiJgtPjNQI9elZeuJJiVtRg0i0KR?usp=drive_link)
+
+Follow the steps below depending on what you want to install.
+
+---
+
+# 🖥️ Install the Musicfy Desktop App (Windows)
+
+1. Download **Musicfy.exe** from the Google Drive folder  
+2. Double‑click the file to launch the widget  
+3. Windows may show a SmartScreen warning  
+   - Click **More info**  
+   - Click **Run anyway**  
+4. The widget will appear on your desktop  
+   - Always‑on‑top  
+   - Transparent  
+   - Ready to receive metadata from the extension
+
+---
+
+# 🧩 Install the Musicfy Browser Extension (Chrome / Edge)
+
+1. Download the folder **musicfy-extension** from Google Drive  
+2. Extract the ZIP (if it’s zipped)  
+3. Open your browser and go to:
+
+   **Chrome:**  chrome://extensions
+   **Edge:**  edge://extensions
+4. Enable **Developer Mode** (top right)  
+5. Click **Load unpacked**  
+6. Select the **musicfy-extension** folder  
+7. The extension will appear in your extensions list  
+8. Open **YouTube Music** and start playing a song  
+9. The widget will instantly show:  
+- Title  
+- Artist  
+- Album  
+- Artwork  
+
+---
+
+# 🎧 How It Works
+
+- The extension reads metadata from YouTube Music  
+- Sends it through a WebSocket to the Musicfy app  
+- The widget updates in real time  
+
+No login, no setup — just play music and enjoy.
+
+---
+
+# ❗ Troubleshooting
+
+### The widget opens but stays empty  
+✔ Make sure the **extension is loaded**  
+✔ Make sure **YouTube Music is open**  
+✔ Make sure **Musicfy.exe is running**  
+✔ Refresh YouTube Music (F5)
+
+### The extension doesn’t load  
+✔ Ensure Developer Mode is ON  
+✔ Ensure you selected the **folder**, not a ZIP  
+✔ Check that `manifest.json` is inside the folder
+
+
+---
+
 ## 🎥 Preview  
