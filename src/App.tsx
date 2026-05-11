@@ -4,6 +4,7 @@ import "./App.css";
 import StopPlayButton from "./components/StopPlayButton";
 import PrevButton from "./components/PrevButton";
 import NextButton from "./components/NextButton";
+import MusicInfo from "./components/MusicInfo";
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
       <StopPlayButton />
       <PrevButton />
       <NextButton />
+      <MusicInfo />
     </div>
   );
 }
