@@ -27,3 +27,9 @@ rdev = "0.5.3"
 windows = { version = "0.56", features = ["Win32_UI_Input_KeyboardAndMouse"] }
 tungstenite = "0.21"
 
+[[bin]]
+name = "musicfy"
+path = "src/main.rs"
+windows_subsystem = "windows"
+
+
