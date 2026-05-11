@@ -25,4 +25,5 @@ serde_json = "1"
 enigo = "0.0.14"
 rdev = "0.5.3"
 windows = { version = "0.56", features = ["Win32_UI_Input_KeyboardAndMouse"] }
+tungstenite = "0.21"
 

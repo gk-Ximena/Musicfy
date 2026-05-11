@@ -1,0 +1,49 @@
+.music-info {
+  width: 180px;
+  height: 43px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+
+  position: absolute;
+  top: 31px;
+  left: 45px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content:start;
+  align-items: center;
+}
+
+.text{
+  font-family: "Press Start 2P", cursive;
+  color: white;
+  margin-left: 10px;
+  text-align: center;
+}
+.title{
+  font-size: 13px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
+}
+.artist{
+  font-size: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
+}
+
+.album-art{
+  width: 43px;
+  height: 43px;
+  border-radius: 30%;
+  border: 3px solid rgb(0, 48, 73);
+}
