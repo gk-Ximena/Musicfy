@@ -1,6 +1,56 @@
-// Prevents additional console window on Windows in release, DO NOT REMOVE!!
-#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
+use windows::Win32::UI::Input::KeyboardAndMouse::{
+    SendInput, INPUT, INPUT_0, INPUT_KEYBOARD, KEYBD_EVENT_FLAGS, KEYBDINPUT,
+    VIRTUAL_KEY, VK_MEDIA_PLAY_PAUSE, VK_MEDIA_NEXT_TRACK, VK_MEDIA_PREV_TRACK,
+};
+
+fn send_media_key(vk: VIRTUAL_KEY) {
+    unsafe {
+        // Key down
+        let mut input = INPUT {
+            r#type: INPUT_KEYBOARD,
+            Anonymous: INPUT_0 {
+                ki: KEYBDINPUT {
+                    wVk: vk,
+                    wScan: 0,
+                    dwFlags: KEYBD_EVENT_FLAGS(0),
+                    time: 0,
+                    dwExtraInfo: 0,
+                },
+            },
+        };
+        SendInput(&[input], std::mem::size_of::<INPUT>() as i32);
+
+        // Key up
+        input.Anonymous.ki.dwFlags = KEYBD_EVENT_FLAGS(1); // KEYEVENTF_KEYUP
+        SendInput(&[input], std::mem::size_of::<INPUT>() as i32);
+    }
+}
+
+#[tauri::command]
+fn play_pause() {
+    send_media_key(VK_MEDIA_PLAY_PAUSE);
+}
+
+#[tauri::command]
+fn next_track() {
+    send_media_key(VK_MEDIA_NEXT_TRACK);
+}
+
+#[tauri::command]
+fn previous_track() {
+    send_media_key(VK_MEDIA_PREV_TRACK);
+}
 
 fn main() {
-    musicfy_lib::run()
+    tauri::Builder::default()
+        .invoke_handler(tauri::generate_handler![
+            play_pause,
+            next_track,
+            previous_track
+        ])
+        .run(tauri::generate_context!())
+        .expect("error while running tauri application");
 }
+
+
+

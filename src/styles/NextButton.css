@@ -1,0 +1,21 @@
+.next-button{
+  width: 21px;
+  height: 27px;
+  background-image: url(./../assets/next-button.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+
+  position: absolute;
+  top: 105px;
+  left: 175px;
+  transition: transform 0.2s ease;
+}
+
+.next-button.pressed {
+  transform: scale(0.95);
+}
