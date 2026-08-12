@@ -1,7 +1,7 @@
 .next-button{
-  width: 21px;
-  height: 27px;
-  background-image: url(./../assets/next-button.png);
+  width: 31px;
+  height: 19px;
+  background-image: url(./../assets/update/next-button-rf.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -10,9 +10,9 @@
   cursor: pointer;
   background-color: transparent;
 
-  position: absolute;
-  top: 105px;
-  left: 175px;
+  position: fixed;
+  top: 134px;
+  left: 310px;
   transition: transform 0.2s ease;
 }
 

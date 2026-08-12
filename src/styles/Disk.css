@@ -1,0 +1,51 @@
+.disk-background {
+  width: 164px;
+  height: 164px;
+  background-image: url(./../assets/update/disk.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+
+  position: fixed;
+  top: 0px;
+  left: 19px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  animation: spin 20s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.song-cover {
+    width: 110px;
+    height: 110px;
+    border-radius: 100%;
+    background-color: #6e1717;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.song-cover-image {
+    width: 115px;
+    height: 115px;
+    border-radius: 100%;
+    object-fit: cover;
+    border: 5px solid #6e1717;
+}
+
+.hole {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 100%;
+    background-color: aliceblue;
+}

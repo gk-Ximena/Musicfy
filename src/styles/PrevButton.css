@@ -1,7 +1,7 @@
 .prev-button{
-  width: 21px;
-  height: 27px;
-  background-image: url(./../assets/prev-button.png);
+  width: 31px;
+  height: 19px;
+  background-image: url(./../assets/update/prev-button-rf.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -10,9 +10,9 @@
   cursor: pointer;
   background-color: transparent;
 
-  position: absolute;
-  top: 105px;
-  left: 70px;
+  position: fixed;
+  top: 134px;
+  left: 215px;
   transition: transform 0.2s ease;
 }
 

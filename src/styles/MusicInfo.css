@@ -1,17 +1,18 @@
 .music-info {
-  width: 180px;
-  height: 43px;
+  width: 131px;
+  height: 56px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   border: none;
   outline: none;
   cursor: pointer;
-  background-color: transparent;
+  background-color: #6e1717;
+  border-radius: 10px;
 
-  position: absolute;
-  top: 31px;
-  left: 45px;
+  position: fixed;
+  top: 54px;
+  left: 212px;
 
   display: flex;
   flex-direction: row;
@@ -21,9 +22,10 @@
 
 .text{
   font-family: "Press Start 2P", cursive;
-  color: white;
+  color: #d9d9d9;
   margin-left: 10px;
   text-align: center;
+  text-shadow: 1px 1px 2px black;
 }
 .title{
   font-size: 13px;
@@ -39,11 +41,4 @@
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 120px;
-}
-
-.album-art{
-  width: 43px;
-  height: 43px;
-  border-radius: 30%;
-  border: 3px solid rgb(0, 48, 73);
 }
