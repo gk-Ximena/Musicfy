@@ -1,7 +1,7 @@
 .stop-play-button{
-  width: 44px;
-  height: 43px;
-  background-image: url(./../assets/stop-play-button.png);
+  width: 41.5px;
+  height: 41.5px;
+  background-image: url(./../assets/update/play-button-rf.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -10,9 +10,9 @@
   cursor: pointer;
   background-color: transparent;
 
-  position: absolute;
-  top: 98px;
-  left: 110px;
+  position: fixed;
+  top: 125px;
+  left: 257px;
   transition: transform 0.2s ease;
 }
 
@@ -29,9 +29,9 @@
 }
 
 .icon.stopped{
-  background-image: url(./../assets/stop-button.png);
+  background-image: url(./../assets/update/play-button-rf.png);
 }
 
 .icon.playing{
-  background-image: url(./../assets/play-button.png);
+  background-image: url(./../assets/update/play-button-rf.png);
 }

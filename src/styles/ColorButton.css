@@ -1,0 +1,26 @@
+.color-button-background{
+  width: 83.5px;
+  height: 63px;
+  background-image: url(./../assets/update/stick.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+
+  position: fixed;
+  top: 137.03px;
+  left: 10px;
+}
+
+.color-button{
+    position: fixed;
+    top: 182px;
+    left: 13px;
+    background-color: #282828;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+}

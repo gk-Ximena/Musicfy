@@ -6,8 +6,6 @@ export default function MusicInfo() {
   const [info, setInfo] = useState({
     title: "No song playing",
     artist: "",
-    album: "",
-    artwork: ""
   });
 
   useEffect(() => {
@@ -27,7 +25,6 @@ export default function MusicInfo() {
 
   return (
     <div className="music-info">
-      {info.artwork && <img src={info.artwork} className="album-art" />}
       <div className="text">
         <div className="title">{info.title}</div>
         <div className="artist">{info.artist}</div>

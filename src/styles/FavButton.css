@@ -1,0 +1,16 @@
+.fav-button-background{
+  width: 25px;
+  height: 22px;
+  background-image: url(./../assets/update/like-button.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+
+  position: fixed;
+  top: 133px;
+  left: 174px;
+}

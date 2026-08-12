@@ -6,12 +6,21 @@
 
 .widget {
   -webkit-app-region: drag;
-  width: 265px;
-  height: 170px;
-  background-image: url(./assets/background-screen\ 1.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  width: 420px;
+  height: 221px;
+  background-color: transparent;
+  overflow: hidden;
 
-  position: relative;
+}
+
+.widget-content {
+  /*Width and height updated 2.0*/
+  position:absolute;
+  bottom: 13px;
+  left: 0;
+  width: 420px;
+  height: 126px;
+  background-color: #d9d9d9;
+  border-radius: 20px;
+  overflow:visible;
 }

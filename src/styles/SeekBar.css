@@ -1,0 +1,21 @@
+.seek-bar-background {
+  width: 223px;
+  height: 42px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: #6e1717;
+  border-radius: 20px;
+
+  position: fixed;
+  top: 179px;
+  left: 163px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content:start;
+  align-items: center;
+}
