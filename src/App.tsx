@@ -9,17 +9,26 @@ import Disk from "./components/Disk";
 import ColorButton from "./components/ColorButton";
 import FavButton from "./components/FavButton";
 import VolumeButton from "./components/VolumeButton";
+import { useState } from "react";
 
 function App() {
+
+  //Keep track of whether the music is playing or not
+    const [isPlaying, setIsPlaying] = useState(false);
 
   return (
     <div className="widget">
       <div className= "widget-content">
-        <StopPlayButton />
+        <StopPlayButton 
+          isPlaying={isPlaying}
+          setIsPlaying={setIsPlaying}
+        />
         <PrevButton />
         <NextButton />
         <MusicInfo />
-        <SeekBar />
+        <SeekBar 
+          isPlaying={isPlaying}
+        />
         <Disk />
         <ColorButton />
         <FavButton />

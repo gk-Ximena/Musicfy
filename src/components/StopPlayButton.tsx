@@ -2,9 +2,8 @@ import { useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import "./../styles/StopPlayButton.css";
 
-export default function StopPlayButton() {
-    //Keep track of whether the music is playing or not
-    const [isPlaying, setIsPlaying] = useState(false);
+export default function StopPlayButton({ isPlaying, setIsPlaying }: { isPlaying: boolean; setIsPlaying: (playing: boolean) => void }) {
+    
     //Animate button when is being pressed
     const [isPressed, setIsPressed] = useState(false);
 
