@@ -13,4 +13,30 @@
   position: fixed;
   top: 133px;
   left: 358px;
+  -webkit-app-region: no-drag;
+}
+
+.volume-button-background input{
+  -webkit-app-region: no-drag;
+  position: fixed;
+  left: 383px;
+  top: 140px;
+
+  -webkit-appearance: none;
+  width: 36px;
+  height: 5px;
+  background: #282828;
+  outline: none;
+  cursor: pointer;
+  border-radius: 20%;
+}
+.volume-button::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 13px;
+  height: 13px;
+  background: #393939; /* thumb color */
+  border-radius: 50%;
+  border: 2px solid #494848; /* thumb border */
+  cursor: pointer;
 }
