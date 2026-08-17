@@ -67,6 +67,13 @@ fn toggle_mute(tx: tauri::State<Arc<Mutex<Sender<String>>>>) {
     }
 }
 
+#[tauri::command]
+fn toggle_like(tx: tauri::State<Arc<Mutex<Sender<String>>>>) {
+    if let Ok(sender) = tx.lock() {
+        let _ = sender.send(r#"{"type":"toggleLike"}"#.to_string());
+    }
+}
+
 fn main() {
     let (tx, rx) = mpsc::channel::<String>();
     let tx = Arc::new(Mutex::new(tx));
@@ -115,7 +122,8 @@ fn main() {
             next_track,
             previous_track,
             set_volume,
-            toggle_mute
+            toggle_mute,
+            toggle_like
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

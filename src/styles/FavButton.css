@@ -16,3 +16,11 @@
 
   user-select: none;
 }
+
+.fav-button-background:hover {
+  transform: scale(0.95);
+}
+
+.fav-button-background.liked {
+  background-image: url(./../assets/update/liked-button.png);
+}

@@ -22,6 +22,7 @@ function App() {
   });
   const [volume, setVolume] = useState(1);
   const [muted, setMuted] = useState(false);
+  const [liked, setLiked] = useState(false);
 
   useEffect(() => {
     const unlisten = listen("metadata", (event) => {
@@ -35,6 +36,7 @@ function App() {
         });
         if (typeof data.volume === "number") setVolume(data.volume);
         if (typeof data.muted === "boolean") setMuted(data.muted);
+        if (typeof data.liked === "boolean") setLiked(data.liked);
       } catch (e) {
         console.error("Invalid metadata:", e);
       }
@@ -55,7 +57,7 @@ function App() {
         <SeekBar isPlaying={isPlaying} />
         <Disk />
         <ColorButton />
-        <FavButton />
+        <FavButton liked={liked} />
         <VolumeButton
           volume={volume}
           muted={muted}

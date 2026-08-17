@@ -1,13 +1,21 @@
 import "./../styles/FavButton.css";
+import { invoke } from "@tauri-apps/api/core";
 
-export default function FavButton() {
+type FavButtonProps = {
+  liked: boolean;
+};
 
-    return (
-        <div className="fav-button-background">
-            <div className="fav-button"> 
+export default function FavButton({ liked }: FavButtonProps) {
+  const handleClick = async () => {
+    await invoke("toggle_like");
+  };
 
-            </div>
-
-        </div>
-    );
+  return (
+    <div
+      className={`fav-button-background ${liked ? "liked" : ""}`}
+      onClick={handleClick}
+    >
+      <div className="fav-button"></div>
+    </div>
+  );
 }
