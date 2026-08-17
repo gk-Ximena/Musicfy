@@ -2,33 +2,43 @@ import { useState } from "react";
 import "./../styles/VolumeButton.css";
 import { invoke } from "@tauri-apps/api/core";
 
-export default function VolumeButton() {
-    //Volume changes
-    const [showSlider, setShowSlider] = useState(false);
-    const [volume, setVolume] = useState(1);
+type VolumeButtonProps = {
+  volume: number;
+  muted: boolean;
+  onVolumeChange: (volume: number) => void;
+};
 
-    const handleVolumeChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newVolume = Number(e.target.value);
-        setVolume(newVolume);
+export default function VolumeButton({
+  volume,
+  muted,
+  onVolumeChange,
+}: VolumeButtonProps) {
+  const [showSlider, setShowSlider] = useState(false);
 
-        await invoke("set_volume", { volume: newVolume });
-    };
+  const handleVolumeChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newVolume = Number(e.target.value);
+    if (!Number.isFinite(newVolume)) return; // guard against bad reads
+    onVolumeChange(newVolume); // optimistic local update
+    await invoke("set_volume", { volume: newVolume });
+  };
 
-    return (
-        <div className="volume-button-background"
-        onClick={() => setShowSlider(!showSlider)}>
-            {showSlider && (
-                <input
-                    type="range"
-                    min="0"
-                    max="1"
-                    step="0.1"
-                    value={volume}
-                    onChange={handleVolumeChange}
-                    className="volume-button"
-                    onClick={(e) => e.stopPropagation()}
-                />
-            )}
-        </div>
-    );
+  return (
+    <div
+      className="volume-button-background"
+      onClick={() => setShowSlider(!showSlider)}
+    >
+      {showSlider && (
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+          value={volume}
+          onChange={handleVolumeChange}
+          className={`volume-button ${muted ? "muted" : ""}`}
+          onClick={(e) => e.stopPropagation()}
+        />
+      )}
+    </div>
+  );
 }
