@@ -1,3 +1,5 @@
+#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
+
 use windows::Win32::UI::Input::KeyboardAndMouse::{
     SendInput, INPUT, INPUT_0, INPUT_KEYBOARD, KEYBD_EVENT_FLAGS, KEYBDINPUT,
     VIRTUAL_KEY, VK_MEDIA_PLAY_PAUSE, VK_MEDIA_NEXT_TRACK, VK_MEDIA_PREV_TRACK,
@@ -55,7 +57,6 @@ fn main() {
 
             thread::spawn(move || {
                 let server = TcpListener::bind("127.0.0.1:12345").unwrap();
-                println!("WebSocket server running on ws://127.0.0.1:12345");
 
 
                 for stream in server.incoming() {
