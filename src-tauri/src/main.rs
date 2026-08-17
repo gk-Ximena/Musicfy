@@ -5,10 +5,13 @@ use windows::Win32::UI::Input::KeyboardAndMouse::{
     VIRTUAL_KEY, VK_MEDIA_PLAY_PAUSE, VK_MEDIA_NEXT_TRACK, VK_MEDIA_PREV_TRACK,
 };
 
-use tauri::{Manager, Emitter}; 
+use std::sync::{mpsc, Arc, Mutex};
+use std::sync::mpsc::Sender;
 use std::thread;
+use std::time::Duration;
 use tungstenite::{accept, Message};
 use std::net::TcpListener;
+use tauri::{Manager, Emitter};
 
 
 fn send_media_key(vk: VIRTUAL_KEY) {
@@ -49,25 +52,57 @@ fn previous_track() {
     send_media_key(VK_MEDIA_PREV_TRACK);
 }
 
+#[tauri::command]
+fn set_volume(volume: f64, tx: tauri::State<Arc<Mutex<Sender<String>>>>) {
+    let payload = format!(r#"{{"type":"setVolume","value":{}}}"#, volume);
+    if let Ok(sender) = tx.lock() {
+        let _ = sender.send(payload);
+    }
+}
+
+#[tauri::command]
+fn toggle_mute(tx: tauri::State<Arc<Mutex<Sender<String>>>>) {
+    if let Ok(sender) = tx.lock() {
+        let _ = sender.send(r#"{"type":"toggleMute"}"#.to_string());
+    }
+}
+
 fn main() {
+    let (tx, rx) = mpsc::channel::<String>();
+    let tx = Arc::new(Mutex::new(tx));
+
     tauri::Builder::default()
-        .setup(|app| {
+        .manage(tx)
+        .setup(move |app| {
             let window = app.get_webview_window("main").unwrap();
             let window_clone = window.clone();
 
             thread::spawn(move || {
                 let server = TcpListener::bind("127.0.0.1:12345").unwrap();
 
-
                 for stream in server.incoming() {
-                    let mut websocket = accept(stream.unwrap()).unwrap();
+                    let stream = stream.unwrap();
+                    stream.set_read_timeout(Some(Duration::from_millis(100))).unwrap();
+                    let mut websocket = accept(stream).unwrap();
 
                     loop {
-                        let msg = websocket.read_message().unwrap();
+                        while let Ok(payload) = rx.try_recv() {
+                            let _ = websocket.write_message(Message::Text(payload));
+                        }
 
-                        if msg.is_text() {
-                            let payload = msg.to_text().unwrap();
-                            window_clone.emit("metadata", payload).unwrap();
+                        match websocket.read_message() {
+                            Ok(msg) => {
+                                if msg.is_text() {
+                                    let payload = msg.to_text().unwrap();
+                                    window_clone.emit("metadata", payload).unwrap();
+                                }
+                            }
+                            Err(tungstenite::Error::Io(ref e))
+                                if e.kind() == std::io::ErrorKind::WouldBlock =>
+                            {
+                                continue;
+                            }
+                            Err(_) => break,
                         }
                     }
                 }
@@ -78,7 +113,9 @@ fn main() {
         .invoke_handler(tauri::generate_handler![
             play_pause,
             next_track,
-            previous_track
+            previous_track,
+            set_volume,
+            toggle_mute
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

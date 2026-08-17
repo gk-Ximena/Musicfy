@@ -1,6 +1,6 @@
 let socket = null;
+let activeTabId = null;
 
-// Connect to Tauri WebSocket server
 function connectSocket() {
   socket = new WebSocket("ws://127.0.0.1:12345");
 
@@ -17,12 +17,25 @@ function connectSocket() {
     console.log("WebSocket error:", err);
     socket.close();
   };
+
+  // NEW: relay commands from the Tauri app down to the content script
+  socket.onmessage = (event) => {
+  if (activeTabId == null) return;
+  try {
+    const data = JSON.parse(event.data);
+    chrome.tabs.sendMessage(activeTabId, data).catch(() => {});
+  } catch (e) {
+    console.warn("Musicfy: bad message from server", event.data);
+  }
+};
 }
 
 connectSocket();
 
-// Receive metadata from inject.js
-chrome.runtime.onMessage.addListener((data) => {
+chrome.runtime.onMessage.addListener((data, sender) => {
+  if (sender.tab) {
+    activeTabId = sender.tab.id; // remember which tab is playing
+  }
   if (socket && socket.readyState === WebSocket.OPEN) {
     socket.send(JSON.stringify(data));
   }

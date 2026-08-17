@@ -1,35 +1,17 @@
-import { useEffect, useState } from "react";
-import { listen } from "@tauri-apps/api/event";
 import "./../styles/MusicInfo.css";
 
-export default function MusicInfo() {
-  const [info, setInfo] = useState({
-    title: "No song playing",
-    artist: "",
-  });
+type MusicInfoProps = {
+  title: string;
+  artist: string;
+};
 
-  useEffect(() => {
-    const unlisten = listen("metadata", (event) => {
-      try {
-        const data = JSON.parse(event.payload as string);
-        setInfo(data);
-      } catch (e) {
-        console.error("Invalid metadata:", e);
-      }
-    });
-
-    return () => {
-      unlisten.then((fn) => fn());
-    };
-  }, []);
-
+export default function MusicInfo({ title, artist }: MusicInfoProps) {
   return (
     <div className="music-info">
       <div className="text">
-        <div className="title">{info.title}</div>
-        <div className="artist">{info.artist}</div>
+        <div className="title">{title}</div>
+        <div className="artist">{artist}</div>
       </div>
     </div>
   );
 }
-
