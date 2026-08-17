@@ -13,4 +13,6 @@
   position: fixed;
   top: 133px;
   left: 174px;
+
+  user-select: none;
 }
