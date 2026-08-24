@@ -6,18 +6,19 @@ Built with **React**, **Tauri (Rust)**, and a **bidirectional WebSocket bridge**
 
 ---
 
-## ✨ Features  
-🎶 **Live Song Metadata** — Displays title, artist, album, and artwork in real time
-🔊 **Volume Control** — Adjust YouTube Music's playback volume directly from the widget
-❤️ **Like/Favorite Sync** — Like or unlike the current song from the widget, with live sync to YouTube Music's own like state
-🔁 **Bidirectional Communication** — The widget doesn't just display state anymore — it sends commands back to your YouTube Music tab
-⏯️ **Playback Controls** — Play/pause, next, and previous track
-🪟 **Transparent Desktop Widget** — Always‑on‑top, minimal, and fully transparent — the widget floats over your desktop with no background window
-🎨 **Redesigned UI** — A compact vinyl‑record‑inspired player card with a spinning disc, waveform accent, and a warm dark red/black color palette (replacing the earlier pixel‑art look)
-🧩 **Chrome/Edge Extension** — Extracts metadata directly from YouTube Music and relays commands back to it
-🖥️ **Cross‑Platform Ready** — Build for Windows, macOS, and Linux
-🔒 **Double‑Injection Safe** — Prevents duplicate content script execution
-📦 **Installer Support** — Build `.exe`, `.msi`, `.dmg`, `.AppImage`, and more
+## ✨ Features
+
+### 🎶 **Live Song Metadata** — Displays title, artist, album, and artwork in real time
+### 🔊 **Volume Control** — Adjust YouTube Music's playback volume directly from the widget
+### ❤️ **Like/Favorite Sync** — Like or unlike the current song from the widget, with live sync to YouTube Music's own like state
+### 🔁 **Bidirectional Communication** — The widget doesn't just display state anymore — it sends commands back to your YouTube Music tab
+### ⏯️ **Playback Controls** — Play/pause, next, and previous track
+### 🪟 **Transparent Desktop Widget** — Always‑on‑top, minimal, and fully transparent — the widget floats over your desktop with no background window
+### 🎨 **Redesigned UI** — A compact vinyl‑record‑inspired player card with a spinning disc, waveform accent, and a warm dark red/black color palette (replacing the earlier pixel‑art look)
+### 🧩 **Chrome/Edge Extension** — Extracts metadata directly from YouTube Music and relays commands back to it
+### 🖥️ **Cross‑Platform Ready** — Build for Windows, macOS, and Linux
+### 🔒 **Double‑Injection Safe** — Prevents duplicate content script execution
+### 📦 **Installer Support** — Build `.exe`, `.msi`, `.dmg`, `.AppImage`, and more
 
 ---
 
@@ -60,49 +61,49 @@ Built with **React**, **Tauri (Rust)**, and a **bidirectional WebSocket bridge**
 
 ## 🔧 Process Overview
 
-🧠 Designed the widget layout and transparent UI
-🧩 Built the YouTube Music content script (`inject.js`)
-🔌 Implemented WebSocket communication between extension → Tauri
-🎧 Connected metadata updates to React state
-🔁 Extended the WebSocket bridge to be bidirectional, enabling widget → YouTube Music commands
-🔊 Added volume control, with state lifted to a single source of truth in `App.tsx`
-❤️ Added like/favorite sync, reading and toggling YouTube Music's native like button
-🪟 Configured Tauri window (transparent, no decorations, always on top)
-🎨 Redesigned the UI around a spinning vinyl disc and warm dark red color palette
-📦 Added icon support (`.png` + `.ico`) for installers
-🛠️ Built release installers for Windows
-🚫 Removed console window using `windows_subsystem = "windows"`
-🧪 Tested metadata and control flow across multiple songs, locales, and page transitions 
+### 🧠 Designed the widget layout and transparent UI
+### 🧩 Built the YouTube Music content script (`inject.js`)
+### 🔌 Implemented WebSocket communication between extension → Tauri
+### 🎧 Connected metadata updates to React state
+### 🔁 Extended the WebSocket bridge to be bidirectional, enabling widget → YouTube Music commands
+### 🔊 Added volume control, with state lifted to a single source of truth in `App.tsx`
+### ❤️ Added like/favorite sync, reading and toggling YouTube Music's native like button
+### 🪟 Configured Tauri window (transparent, no decorations, always on top)
+### 🎨 Redesigned the UI around a spinning vinyl disc and warm dark red color palette
+### 📦 Added icon support (`.png` + `.ico`) for installers
+### 🛠️ Built release installers for Windows
+### 🚫 Removed console window using `windows_subsystem = "windows"`
+### 🧪 Tested metadata and control flow across multiple songs, locales, and page transitions 
 
 ---
 
 ## ⚠️ Challenges Faced  
 
-🔍 **YouTube Music SPA behavior** — Content script not reloading on navigation
-🧩 **Double injection issues** — Solved with a global guard in `inject.js`
-🌐 **WebSocket stability** — Ensured reconnection and error handling
-🔁 **One-way to two-way WebSocket** — The original bridge only read from the socket; adding outgoing commands required a channel-based approach so writes and reads could interleave without blocking
-🌍 **Locale-dependent selectors** — Early like-button detection relied on `aria-label="Like"`, which broke on non-English YouTube Music UIs; fixed with a locale-independent selector
-📋 **Multiple like-button elements** — YouTube Music can render a like button per queue row, not just the player bar; selectors now scope to `ytmusic-player-bar` to avoid picking the wrong song's state
-🔢 **Non-finite volume values** — Guarded against `NaN`/`undefined` values reaching `video.volume`, which otherwise threw a runtime error
-🪟 **Transparent window quirks** — Dragging, focus, and shadow issues
-🖼️ **Long song titles** — Added ellipsis / scrolling options
-🔐 **Extension permissions** — Ensuring correct matches for `music.youtube.com`
-📦 **Windows packaging** — Required `.ico` file for MSI builds
+### 🔍 **YouTube Music SPA behavior** — Content script not reloading on navigation
+### 🧩 **Double injection issues** — Solved with a global guard in `inject.js`
+### 🌐 **WebSocket stability** — Ensured reconnection and error handling
+### 🔁 **One-way to two-way WebSocket** — The original bridge only read from the socket; adding outgoing commands required a channel-based approach so writes and reads could interleave without blocking
+### 🌍 **Locale-dependent selectors** — Early like-button detection relied on `aria-label="Like"`, which broke on non-English YouTube Music UIs; fixed with a locale-independent selector
+### 📋 **Multiple like-button elements** — YouTube Music can render a like button per queue row, not just the player bar; selectors now scope to `ytmusic-player-bar` to avoid picking the wrong song's state
+### 🔢 **Non-finite volume values** — Guarded against `NaN`/`undefined` values reaching `video.volume`, which otherwise threw a runtime error
+### 🪟 **Transparent window quirks** — Dragging, focus, and shadow issues
+### 🖼️ **Long song titles** — Added ellipsis / scrolling options
+### 🔐 **Extension permissions** — Ensuring correct matches for `music.youtube.com`
+### 📦 **Windows packaging** — Required `.ico` file for MSI builds
 
 ---
 
 ## 🚀 Future Improvements
 
-🎨 Add theme customization (light/dark/pixel)
-📡 Add support for Spotify, Apple Music, and local players
-🖼️ Add blurred album‑art background mode
-📱 Create a mobile companion app
-🔔 Add notifications for song changes
-🧪 Add unit tests for metadata parsing
-🌍 Publish the extension to the Chrome Web Store
-🧰 Add auto‑update support for the desktop app
-👎 Add dislike button support alongside like  
+### 🎨 Add theme customization (light/dark/pixel)
+### 📡 Add support for Spotify, Apple Music, and local players
+### 🖼️ Add blurred album‑art background mode
+### 📱 Create a mobile companion app
+### 🔔 Add notifications for song changes
+### 🧪 Add unit tests for metadata parsing
+### 🌍 Publish the extension to the Chrome Web Store
+### 🧰 Add auto‑update support for the desktop app
+### 👎 Add dislike button support alongside like  
 
 ---
 
