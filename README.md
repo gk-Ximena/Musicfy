@@ -13,7 +13,7 @@ Built with **React**, **Tauri (Rust)**, and a **bidirectional WebSocket bridge**
 ### ❤️ **Like/Favorite Sync** — Like or unlike the current song from the widget, with live sync to YouTube Music's own like state
 ### 🔁 **Bidirectional Communication** — The widget doesn't just display state anymore — it sends commands back to your YouTube Music tab
 ### ⏯️ **Playback Controls** — Play/pause, next, and previous track
-### 🪟 **Transparent Desktop Widget** — Always‑on‑top, minimal, and fully transparent — the widget floats over your desktop with no background window
+### 🪟 **Transparent Desktop Widget** — Minimal, and fully transparent — the widget floats over your desktop with no background window
 ### 🎨 **Redesigned UI** — A compact vinyl‑record‑inspired player card with a spinning disc, waveform accent, and a warm dark red/black color palette (replacing the earlier pixel‑art look)
 ### 🧩 **Chrome/Edge Extension** — Extracts metadata directly from YouTube Music and relays commands back to it
 ### 🖥️ **Cross‑Platform Ready** — Build for Windows, macOS, and Linux
